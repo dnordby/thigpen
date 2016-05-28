@@ -10,3 +10,41 @@ body {
 		}
 	}
 }
+
+h1, h2, h3, h4, h5, p, a {
+	color: #333;
+}
+
+h1 {
+
+}
+
+h2 {
+
+}
+
+h3 {
+
+}
+
+h4 {
+
+}
+
+h5 {
+
+}
+
+p {
+
+}
+
+a {
+	&:focus, &:active, &:hover {
+		outline: 0;
+	}
+	&:hover {
+		color: #333;
+		text-decoration: none;
+	}
+}

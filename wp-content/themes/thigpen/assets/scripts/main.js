@@ -18,7 +18,9 @@
     // All pages
     'common': {
       init: function() {
-        // JavaScript to be fired on all pages
+        $('.menu-toggle').click(function(){
+          $('.menu-primary-container').toggleClass('open');
+        });
       },
       finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired
@@ -27,7 +29,37 @@
     // Home page
     'home': {
       init: function() {
-        // JavaScript to be fired on the home page
+        function setTimer($tile) {
+          var tile = $tile;
+          var maxRandomNumber = Math.ceil(Math.random() + 8000);
+          var minRandomNumber = Math.floor(Math.random()*5000 + 5000);
+          var RoundNumber = Math.round( (maxRandomNumber + minRandomNumber)/2 );
+          setTimeout (function(){
+            getBackground(tile);
+            console.log('Time: '+RoundNumber);
+          }, RoundNumber);
+        }
+
+        function getBackground($tile) {
+          var tile = $tile;
+          var colorString = $tile.data('colors');
+          var colorArray = colorString.split(', ');
+          var colorArrayLength = colorArray.length;
+          var randomNumber = Math.random()*colorArrayLength;
+          var roundNumber = Math.round(randomNumber);
+          // SET COLOR/PHOTO HERE
+          tile.css('background-color', colorArray[roundNumber]);
+          setTimer(tile);
+        }
+
+        function swap() {
+          $('.tile-wrapper .tile').each(function(){
+            getBackground($(this));
+          });
+        }
+
+        swap();
+
       },
       finalize: function() {
         // JavaScript to be fired on the home page, after the init JS

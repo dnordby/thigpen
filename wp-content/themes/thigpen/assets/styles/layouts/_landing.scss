@@ -9,99 +9,30 @@
 .tile-row {
 	.tile-wrapper {
 		height: 41.66666667vw;
-		margin: 0 29.1666666667%;
 		position: absolute;
-		top: 50%;
+	    top: calc(50% - 20px);
 		transform: translateY(-50%);
+		-moz-transform: translateY(-50%);
+		-o-transform: translateY(-50%);
+		-webkit-transform: translateY(-50%);
 		.tile {
-			height: 50%;
+			transition: background-color 0.3s ease-in-out;
 			&.one {
 				background-color: #efefef;
-				&:after {
-					background-color: #000;
-					content: '';
-					display: block;
-					height: 31vw;
-					position: absolute;
-					right: 0;
-					width: 1px;
-				}
-				&:before {
-					background-color: #000;
-					bottom: 0;
-					content: '';
-					display: block;
-					height: 1px;
-					position: absolute;
-					right: 0;
-					width: 31vw;
-				}
+				height: 70%;
 			}
 			&.two {
 				background-color: #bfbfbf;
-				&:after {
-					background-color: #000;
-					content: '';
-					display: block;
-					height: 31vw;
-					position: absolute;
-					right: 0;
-					width: 1px;
-				}
-				&:before {
-					background-color: #000;
-					bottom: 0;
-					content: '';
-					display: block;
-					height: 1px;
-					position: absolute;
-					right: 0;
-					width: 31vw;
-				}
+				height: 40%;
 			}
 			&.three {
 				background-color: #8f8f8f;
-				&:after {
-					background-color: #000;
-					content: '';
-					display: block;
-					height: 31vw;
-					position: absolute;
-					right: 0;
-					width: 1px;
-				}
-				&:before {
-					background-color: #000;
-					bottom: 0;
-					content: '';
-					display: block;
-					height: 1px;
-					position: absolute;
-					right: 0;
-					width: 31vw;
-				}
+				height: 30%;
 			}
 			&.four {
 				background-color: #5f5f5f;
-				&:after {
-					background-color: #000;
-					content: '';
-					display: block;
-					height: 31vw;
-					position: absolute;
-					right: 0;
-					width: 1px;
-				}
-				&:before {
-					background-color: #000;
-					bottom: 0;
-					content: '';
-					display: block;
-					height: 1px;
-					position: absolute;
-					right: 0;
-					width: 31vw;
-				}
+				height: 60%;
+				top: -30%;
 			}
 		}
 	}
@@ -110,9 +41,16 @@
 @media (max-width: 767px) {
 	.tile-row {
 		.tile-wrapper {
+			height: 100%;
+			top: 30px;
+			transform: translateY(0%);
 			.tile {
-				border: 1px black dashed;
-				height: 100%;
+				&.one, &.two, &.three, &.four {
+					height: 60%;
+				}
+				&.four {
+					top: 0;
+				}
 			}
 		}
 	}
