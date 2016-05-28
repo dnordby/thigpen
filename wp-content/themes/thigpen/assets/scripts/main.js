@@ -70,6 +70,14 @@
       init: function() {
         // JavaScript to be fired on the about us page
       }
+    },
+    'page_template_photogird': {
+      $('.photo-wrapper').each(function(){
+        var maxRandomNumber = Math.ceil(Math.random() + 475);
+        var minRandomNumber = Math.floor(Math.random()*250 + 250);
+        var randHeight = Math.round( (maxRandomNumber + minRandomNumber)/2 );
+        $(this).css('height', randHeight);
+      });
     }
   };
 
