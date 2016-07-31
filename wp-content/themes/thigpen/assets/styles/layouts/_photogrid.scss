@@ -1,6 +1,14 @@
-.container {
+.photo-grid {
+	padding-top: 40px;
+	position: relative;
+	top: 40px;
 	.photo-wrapper {
 		min-height: 250px;
 		max-height: 475px;
+		padding: 7.5px;
+		.photo {
+			height: 100%;
+			width: 100%;
+		}
 	}
 }

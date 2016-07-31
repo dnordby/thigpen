@@ -31,24 +31,21 @@
       init: function() {
         function setTimer($tile) {
           var tile = $tile;
-          var maxRandomNumber = Math.ceil(Math.random() + 8000);
-          var minRandomNumber = Math.floor(Math.random()*5000 + 5000);
-          var RoundNumber = Math.round( (maxRandomNumber + minRandomNumber)/2 );
+          var RoundNumber = Math.round(Math.random()*(8000-5000)+5000);
           setTimeout (function(){
             getBackground(tile);
-            console.log('Time: '+RoundNumber);
           }, RoundNumber);
         }
 
         function getBackground($tile) {
           var tile = $tile;
-          var colorString = $tile.data('colors');
-          var colorArray = colorString.split(', ');
-          var colorArrayLength = colorArray.length;
-          var randomNumber = Math.random()*colorArrayLength;
+          var urlString = $tile.data('url');
+          var urlArray = urlString.split(',');
+          var urlArrayLength = urlArray.length;
+          var randomNumber = Math.random()*urlArrayLength;
           var roundNumber = Math.round(randomNumber);
-          // SET COLOR/PHOTO HERE
-          tile.css('background-color', colorArray[roundNumber]);
+          // SET PHOTO HERE
+          tile.css('background-image', url(urlArray[roundNumber]) );
           setTimer(tile);
         }
 
@@ -72,12 +69,80 @@
       }
     },
     'page_template_photogird': {
-      $('.photo-wrapper').each(function(){
-        var maxRandomNumber = Math.ceil(Math.random() + 475);
-        var minRandomNumber = Math.floor(Math.random()*250 + 250);
-        var randHeight = Math.round( (maxRandomNumber + minRandomNumber)/2 );
-        $(this).css('height', randHeight);
-      });
+      init: function() {
+        function topOffset(tile) {
+          // TILES OFFSET FOR HD DESKTOP
+          if ( $(window).width() >= 1200 ) {
+            var offsetHeight = 0;
+            var totalPhotos = $('.photo-wrapper').length;
+            var classes = tile.attr('class');
+            classes = classes.split(' ')[0];
+            classes = classes.split('-')[2];
+            if ( (classes - 4) >= 0) {
+              var row = $(tile).closest('.row').prev('.row');
+              var heights = [];
+              $(row).find('.photo-wrapper').each(function(){
+                heights.push($(this).height());
+              });
+              maxHeight = Math.max.apply(Math, heights);
+              aboveHeight = $(row).find('.photo-wrapper-'+(classes - 4)).height();
+              offsetHeight = -1*(maxHeight - aboveHeight);
+            }
+            tile.css('top', offsetHeight);
+          // TILES OFFSET FOR LAPTOP
+          } else if ( $(window).width() < 1200 && $(window).width() >= 992 ) {
+            var offsetHeight = 0;
+            classes = classes.split(' ')[0];
+            classes = classes.split('-')[2];
+            if ( (classes - 3) >= 0) {
+              var row = $(tile).closest('.row').prev('.row');
+              var heights = [];
+              $(row).find('.photo-wrapper').each(function(){
+                heights.push($(this).height());
+              });
+              maxHeight = Math.max.apply(Math, heights);
+              aboveHeight = $(row).find('.photo-wrapper-'+(classes - 4)).height();
+              offsetHeight = -1*(maxHeight - aboveHeight);
+            }
+            tile.css('top', offsetHeight);
+          // TILES OFFSET FOR TABLET
+          } else if ( $(window).width() < 992 && $(window).width() >= 768 ) {
+            var offsetHeight = 0;
+            classes = classes.split(' ')[0];
+            classes = classes.split('-')[2];
+            if ( (classes - 2) >= 0) {
+              var row = $(tile).closest('.row').prev('.row');
+              var heights = [];
+              $(row).find('.photo-wrapper').each(function(){
+                heights.push($(this).height());
+              });
+              maxHeight = Math.max.apply(Math, heights);
+              aboveHeight = $(row).find('.photo-wrapper-'+(classes - 4)).height();
+              offsetHeight = -1*(maxHeight - aboveHeight);
+            }
+            tile.css('top', offsetHeight);
+          // TILES OFFSET FOR MOBILE
+          } else if ( $(window).width() < 768 ) {
+            var offsetHeight = 0;
+            tile.css('top', offsetHeight);
+          }
+        }
+
+        $('.photo-wrapper').each(function(){
+          var tile = $(this);
+          var randHeight = Math.round(Math.random()*(380-250)+250);
+          topOffset(tile);
+          $(this).css({
+            'height': randHeight
+          });
+        });
+        $(window).resize(function(){
+          $('.photo-wrapper').each(function(){
+            var tile = $(this);
+            topOffset(tile);
+          });
+        });
+      }
     }
   };
 
