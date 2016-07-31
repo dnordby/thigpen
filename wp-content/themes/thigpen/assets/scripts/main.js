@@ -45,7 +45,7 @@
           var randomNumber = Math.random()*urlArrayLength;
           var roundNumber = Math.round(randomNumber);
           // SET PHOTO HERE
-          tile.css('background-image', url(urlArray[roundNumber]) );
+          tile.css('background-image', 'url('+urlArray[roundNumber]+')' );
           setTimer(tile);
         }
 
