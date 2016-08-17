@@ -4,14 +4,18 @@ header {
     top: 0;
     width: 100%;
     z-index: 1;
-	.brand {
-		color: #333;
-		display: inline-block;
-    float: left;
-    padding: 10px 15px;
-    text-transform: uppercase;
-    transition: all 0.3s ease-in-out;
-	}
+    h3 {
+    	line-height: 46px;
+    	margin: 0;
+    	.brand {
+			color: #333;
+			display: inline-block;
+		    float: left;
+		    padding: 10px 15px;
+		    text-transform: uppercase;
+		    transition: all 0.3s ease-in-out;
+		}
+    }
 	.nav-primary {
 		display: inline-block;
 		float: right;
@@ -19,6 +23,7 @@ header {
 			.nav{
 				.menu-item {
 					display: inline-block;
+					line-height: 46px;
 				}
 			}
 		}

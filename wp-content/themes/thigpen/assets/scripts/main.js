@@ -41,11 +41,17 @@
           var tile = $tile;
           var urlString = $tile.data('url');
           var urlArray = urlString.split(',');
-          var urlArrayLength = urlArray.length;
+          var urlArrayLength = (urlArray.length - 1);
           var randomNumber = Math.random()*urlArrayLength;
           var roundNumber = Math.round(randomNumber);
           // SET PHOTO HERE
-          tile.css('background-image', 'url('+urlArray[roundNumber]+')' );
+          tile.css('opacity', 0);
+          setTimeout (function(){
+            tile.css('background-image', 'url('+urlArray[roundNumber]+')' );
+          }, 300);
+          setTimeout (function(){
+            tile.css('opacity', 1);
+          }, 600);
           setTimer(tile);
         }
 
@@ -72,10 +78,10 @@
       init: function() {
         function topOffset(tile) {
           // TILES OFFSET FOR HD DESKTOP
+          var classes = tile.attr('class');
+          var offsetHeight = 0;
           if ( $(window).width() >= 1200 ) {
-            var offsetHeight = 0;
             var totalPhotos = $('.photo-wrapper').length;
-            var classes = tile.attr('class');
             classes = classes.split(' ')[0];
             classes = classes.split('-')[2];
             if ( (classes - 4) >= 0) {
@@ -91,7 +97,6 @@
             tile.css('top', offsetHeight);
           // TILES OFFSET FOR LAPTOP
           } else if ( $(window).width() < 1200 && $(window).width() >= 992 ) {
-            var offsetHeight = 0;
             classes = classes.split(' ')[0];
             classes = classes.split('-')[2];
             if ( (classes - 3) >= 0) {
@@ -107,7 +112,6 @@
             tile.css('top', offsetHeight);
           // TILES OFFSET FOR TABLET
           } else if ( $(window).width() < 992 && $(window).width() >= 768 ) {
-            var offsetHeight = 0;
             classes = classes.split(' ')[0];
             classes = classes.split('-')[2];
             if ( (classes - 2) >= 0) {
@@ -123,7 +127,6 @@
             tile.css('top', offsetHeight);
           // TILES OFFSET FOR MOBILE
           } else if ( $(window).width() < 768 ) {
-            var offsetHeight = 0;
             tile.css('top', offsetHeight);
           }
         }
