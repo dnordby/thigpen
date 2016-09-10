@@ -1,6 +1,6 @@
 <header class="banner hidden-xs">
   <div class="container-fluid">
-    <img src="<?php echo(get_template_directory_uri()); ?>/assets/images/logo.png">
+    <img src="<?php echo(get_template_directory_uri()); ?>/dist/images/logo.png">
     <nav class="nav-primary">
       <?php
       if (has_nav_menu('primary_navigation')) :
