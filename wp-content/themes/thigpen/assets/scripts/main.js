@@ -44,14 +44,20 @@
           var urlArrayLength = (urlArray.length - 1);
           var randomNumber = Math.random()*urlArrayLength;
           var roundNumber = Math.round(randomNumber);
-          // SET PHOTO HERE
-          tile.css('opacity', 0);
+          // SET PHOTO HERE\
+          $(tile).css({
+            'opacity': 0,
+            'transition': 'opacity 0.4s ease-in-out'
+          });
           setTimeout (function(){
             tile.css('background-image', 'url('+urlArray[roundNumber]+')' );
-          }, 300);
+          }, 400);
           setTimeout (function(){
-            tile.css('opacity', 1);
-          }, 600);
+            $(tile).css({
+              'opacity': 1,
+              'transition': 'opacity 0.4s ease-in-out'
+            });
+          }, 800);
           setTimer(tile);
         }
 
@@ -60,9 +66,7 @@
             getBackground($(this));
           });
         }
-
         swap();
-
       },
       finalize: function() {
         // JavaScript to be fired on the home page, after the init JS
@@ -74,76 +78,32 @@
         // JavaScript to be fired on the about us page
       }
     },
-    'page_template_photogird': {
+    'page_template_photogrid': {
       init: function() {
-        function topOffset(tile) {
-          // TILES OFFSET FOR HD DESKTOP
-          var classes = tile.attr('class');
-          var offsetHeight = 0;
-          if ( $(window).width() >= 1200 ) {
-            var totalPhotos = $('.photo-wrapper').length;
-            classes = classes.split(' ')[0];
-            classes = classes.split('-')[2];
-            if ( (classes - 4) >= 0) {
-              var row = $(tile).closest('.row').prev('.row');
-              var heights = [];
-              $(row).find('.photo-wrapper').each(function(){
-                heights.push($(this).height());
-              });
-              maxHeight = Math.max.apply(Math, heights);
-              aboveHeight = $(row).find('.photo-wrapper-'+(classes - 4)).height();
-              offsetHeight = -1*(maxHeight - aboveHeight);
-            }
-            tile.css('top', offsetHeight);
-          // TILES OFFSET FOR LAPTOP
-          } else if ( $(window).width() < 1200 && $(window).width() >= 992 ) {
-            classes = classes.split(' ')[0];
-            classes = classes.split('-')[2];
-            if ( (classes - 3) >= 0) {
-              var row = $(tile).closest('.row').prev('.row');
-              var heights = [];
-              $(row).find('.photo-wrapper').each(function(){
-                heights.push($(this).height());
-              });
-              maxHeight = Math.max.apply(Math, heights);
-              aboveHeight = $(row).find('.photo-wrapper-'+(classes - 4)).height();
-              offsetHeight = -1*(maxHeight - aboveHeight);
-            }
-            tile.css('top', offsetHeight);
-          // TILES OFFSET FOR TABLET
-          } else if ( $(window).width() < 992 && $(window).width() >= 768 ) {
-            classes = classes.split(' ')[0];
-            classes = classes.split('-')[2];
-            if ( (classes - 2) >= 0) {
-              var row = $(tile).closest('.row').prev('.row');
-              var heights = [];
-              $(row).find('.photo-wrapper').each(function(){
-                heights.push($(this).height());
-              });
-              maxHeight = Math.max.apply(Math, heights);
-              aboveHeight = $(row).find('.photo-wrapper-'+(classes - 4)).height();
-              offsetHeight = -1*(maxHeight - aboveHeight);
-            }
-            tile.css('top', offsetHeight);
-          // TILES OFFSET FOR MOBILE
-          } else if ( $(window).width() < 768 ) {
-            tile.css('top', offsetHeight);
-          }
-        }
+        var baseString = ' col-xs-12 ';
 
-        $('.photo-wrapper').each(function(){
-          var tile = $(this);
-          var randHeight = Math.round(Math.random()*(380-250)+250);
-          topOffset(tile);
-          $(this).css({
-            'height': randHeight
-          });
+        $('.photo-wrapper:nth-child(7n + 1), .photo-wrapper:nth-child(7n + 3)').each(function(){
+          var currentClass = $(this).attr('class');
+          currentClass = currentClass + baseString + 'col-sm-3';
+          $(this).attr('class', currentClass);
         });
-        $(window).resize(function(){
-          $('.photo-wrapper').each(function(){
-            var tile = $(this);
-            topOffset(tile);
-          });
+
+        $('.photo-wrapper:nth-child(7n + 2)').each(function(){
+          var currentClass = $(this).attr('class');
+          currentClass = currentClass + baseString + 'col-sm-6';
+          $(this).attr('class', currentClass);
+        });
+
+        $('.photo-wrapper:nth-child(7n + 4), .photo-wrapper:nth-child(7n + 6)').each(function(){
+          var currentClass = $(this).attr('class');
+          currentClass = currentClass + baseString + 'col-sm-4';
+          $(this).attr('class', currentClass);
+        });
+
+        $('.photo-wrapper:nth-child(7n + 5), .photo-wrapper:nth-child(7n + 7)').each(function(){
+          var currentClass = $(this).attr('class');
+          currentClass = currentClass + baseString + 'col-sm-2';
+          $(this).attr('class', currentClass);
         });
       }
     }
@@ -181,5 +141,10 @@
 
   // Load Events
   $(document).ready(UTIL.loadEvents);
+  $(window).load(function(){
+    $('.photo').each(function(){
+      $(this).addClass('loaded');
+    });
+  });
 
 })(jQuery); // Fully reference jQuery after this point.
