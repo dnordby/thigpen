@@ -35,6 +35,6 @@ use Roots\Sage\Wrapper;
       get_template_part('templates/footer');
       wp_footer();
     ?>
-    <script type="text/javascript" src="<?php echo(get_template_directory_uri()); ?>/dist/scripts/slick.min.js"></script>
+    <script type="text/javascript" src="<?php echo(get_template_directory_uri()); ?>/assets/scripts/slick.min.js"></script>
   </body>
 </html>

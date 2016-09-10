@@ -39,9 +39,11 @@ header {
 
 @media (max-width: 767px) {
 	.mobile-header {
+		padding-bottom: 20px;
 		.nav-mobile {
-			display: inline-block;
-			float: right;
+			position: absolute;
+			top: 0;
+			right: 0;
 			.menu-toggle {
 				cursor: pointer;
 				padding: 10px 15px;
@@ -63,9 +65,16 @@ header {
 					.menu-item {
 						height: 0;
 						list-style: none;
-				    padding: 0 15px;
-				    text-align: right;
-				    transition: height 0.3s ease-in-out, padding-bottom 0.3s ease-in-out, padding-top 0.3s ease-in-out;
+					    padding: 0 15px;
+					    text-align: right;
+					    transition: height 0.3s ease-in-out, padding-bottom 0.3s ease-in-out, padding-top 0.3s ease-in-out;
+					    a {
+					    	font-family: 'Montserrat', sans-serif;
+						    font-weight: 400;
+						    font-style: normal;
+						    letter-spacing: 1px;
+							text-transform: uppercase;
+					    }
 					}
 				}
 				&.open {

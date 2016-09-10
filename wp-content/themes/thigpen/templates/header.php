@@ -13,7 +13,7 @@
 
 <header class="banner mobile-header visible-xs">
   <div class="container-fluid">
-    <a class="brand" href="<?= esc_url(home_url('/')); ?>"><?php bloginfo('name'); ?></a>
+    <a href="/"><img src="<?php echo(get_template_directory_uri()); ?>/dist/images/logo.png" class="logo"></a>
     <nav class="nav-mobile">
       <div class="menu-toggle glyphicon glyphicon-menu-hamburger"></div>
       <?php

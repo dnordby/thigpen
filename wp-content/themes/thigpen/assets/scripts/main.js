@@ -29,15 +29,66 @@
     // Home page
     'home': {
       init: function() {
-        $('.home-slider').slick({
-          dots: false,
-          fade: true,
-          cssEase: 'linear',
-          speed: 600,
-          infinite: true,
-          slidesToShow: 2,
-          slidesToScroll: 2
+        $(window).resize(function(){
+          if ( $(window).width() > 767 ) {
+            $('.home-slider').slick({
+              dots: false,
+              arrows: false,
+              autoplay: true,
+              infinite: true,
+              slidesToShow: 2,
+              slidesToScroll: 2,
+              pauseOnHover: false,
+              autoplaySpeed: 6000,
+              cssEase: 'linear',
+              lazyLoad: 'progressive',
+              draggable: false
+            });
+          } else {
+              $('.home-slider').slick({
+                dots: false,
+                arrows: false,
+                autoplay: true,
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                pauseOnHover: false,
+                autoplaySpeed: 6000,
+                cssEase: 'linear',
+                lazyLoad: 'progressive',
+                draggable: false
+              });
+          }
         });
+        if ( $(window).width() > 767 ) {
+          $('.home-slider').slick({
+            dots: false,
+            arrows: false,
+            autoplay: true,
+            infinite: true,
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            pauseOnHover: false,
+            autoplaySpeed: 6000,
+            cssEase: 'linear',
+            lazyLoad: 'progressive',
+            draggable: false
+          });
+        } else {
+            $('.home-slider').slick({
+              dots: false,
+              arrows: false,
+              autoplay: true,
+              infinite: true,
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              pauseOnHover: false,
+              autoplaySpeed: 6000,
+              cssEase: 'linear',
+              lazyLoad: 'progressive',
+              draggable: false
+            });
+        }
       },
       finalize: function() {
         // JavaScript to be fired on the home page, after the init JS
