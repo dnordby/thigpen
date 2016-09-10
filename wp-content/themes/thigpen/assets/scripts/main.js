@@ -29,44 +29,15 @@
     // Home page
     'home': {
       init: function() {
-        function setTimer($tile) {
-          var tile = $tile;
-          var RoundNumber = Math.round(Math.random()*(8000-5000)+5000);
-          setTimeout (function(){
-            getBackground(tile);
-          }, RoundNumber);
-        }
-
-        function getBackground($tile) {
-          var tile = $tile;
-          var urlString = $tile.data('url');
-          var urlArray = urlString.split(',');
-          var urlArrayLength = (urlArray.length - 1);
-          var randomNumber = Math.random()*urlArrayLength;
-          var roundNumber = Math.round(randomNumber);
-          // SET PHOTO HERE\
-          $(tile).css({
-            'opacity': 0,
-            'transition': 'opacity 0.4s ease-in-out'
-          });
-          setTimeout (function(){
-            tile.css('background-image', 'url('+urlArray[roundNumber]+')' );
-          }, 400);
-          setTimeout (function(){
-            $(tile).css({
-              'opacity': 1,
-              'transition': 'opacity 0.4s ease-in-out'
-            });
-          }, 800);
-          setTimer(tile);
-        }
-
-        function swap() {
-          $('.tile-wrapper .tile').each(function(){
-            getBackground($(this));
-          });
-        }
-        swap();
+        $('.home-slider').slick({
+          dots: false,
+          fade: true,
+          cssEase: 'linear',
+          speed: 600,
+          infinite: true,
+          slidesToShow: 2,
+          slidesToScroll: 2
+        });
       },
       finalize: function() {
         // JavaScript to be fired on the home page, after the init JS

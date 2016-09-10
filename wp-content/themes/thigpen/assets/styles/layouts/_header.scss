@@ -1,29 +1,36 @@
 header {
-	background-color: #efefef;
+	background-color: #fff;
+	padding-top: 20px;
     position: fixed;
+    text-align: center;
     top: 0;
     width: 100%;
     z-index: 2;
-    h3 {
-    	line-height: 46px;
-    	margin: 0;
-    	.brand {
-			color: #333;
-			display: inline-block;
-		    float: left;
-		    padding: 10px 15px;
-		    text-transform: uppercase;
-		    transition: all 0.3s ease-in-out;
-		}
+    .logo {
+    	height: 125px;
     }
 	.nav-primary {
-		display: inline-block;
-		float: right;
+		display: block;
 		.menu-primary-container {
 			.nav{
 				.menu-item {
 					display: inline-block;
 					line-height: 46px;
+					a {
+						font-family: 'Montserrat', sans-serif;
+					    font-weight: 400;
+					    font-style: normal;
+					    font-size: 16px;
+					    letter-spacing: 1px;
+						text-transform: uppercase;
+						transition: color 0.3s ease-in-out;
+					}
+					&:hover {
+						a {
+							color: #999;
+							transition: color 0.3s ease-in-out;
+						}
+					}
 				}
 			}
 		}
