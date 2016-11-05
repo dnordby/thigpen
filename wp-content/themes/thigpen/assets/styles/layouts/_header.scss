@@ -1,4 +1,4 @@
-header {
+.header {
 	background-color: #fff;
 	padding-top: 20px;
     position: fixed;
@@ -27,6 +27,7 @@ header {
 					}
 					&:hover {
 						a {
+							background-color: transparent !important;
 							color: #999;
 							transition: color 0.3s ease-in-out;
 						}

@@ -5,7 +5,6 @@
 .home-slider {
 	height: calc(100vh - 231px);
 	position: relative;
-	top: 211px;
 	.slick-list {
 		height: 100%;
 		.slick-track {
@@ -22,6 +21,5 @@
 	}
 	@media (max-width: 767px) {
 		height: calc(100vh - 165px);
-		top: 145px;
 	}
 }

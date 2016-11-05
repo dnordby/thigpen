@@ -1,4 +1,4 @@
-<header class="banner hidden-xs">
+<header class="banner hidden-xs header">
   <div class="container-fluid">
     <a href="/"><img src="<?php echo(get_template_directory_uri()); ?>/dist/images/logo.png" class="logo"></a>
     <nav class="nav-primary">

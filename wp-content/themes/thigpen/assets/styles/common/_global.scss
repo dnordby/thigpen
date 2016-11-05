@@ -55,3 +55,13 @@ a {
 		text-decoration: none;
 	}
 }
+
+.wrap.container-fluid {
+	height: initial;
+	position: relative;
+	top: 211px;
+	z-index: 1;
+	@media (max-width: 767px) {
+		top: 145px;
+	}
+}
