@@ -18,9 +18,7 @@
     // All pages
     'common': {
       init: function() {
-        $('.menu-toggle').click(function(){
-          $('.menu-primary-container').toggleClass('open');
-        });
+        // JavaScript to be fired on all pages
       },
       finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired
@@ -29,66 +27,19 @@
     // Home page
     'home': {
       init: function() {
-        $(window).resize(function(){
-          if ( $(window).width() > 767 ) {
-            $('.home-slider').slick({
-              dots: false,
-              arrows: false,
-              autoplay: true,
-              infinite: true,
-              slidesToShow: 2,
-              slidesToScroll: 2,
-              pauseOnHover: false,
-              autoplaySpeed: 6000,
-              cssEase: 'linear',
-              lazyLoad: 'progressive',
-              draggable: false
-            });
-          } else {
-              $('.home-slider').slick({
-                dots: false,
-                arrows: false,
-                autoplay: true,
-                infinite: true,
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                pauseOnHover: false,
-                autoplaySpeed: 6000,
-                cssEase: 'linear',
-                lazyLoad: 'progressive',
-                draggable: false
-              });
-          }
-        });
-        if ( $(window).width() > 767 ) {
-          $('.home-slider').slick({
-            dots: false,
-            arrows: false,
-            autoplay: true,
-            infinite: true,
-            slidesToShow: 2,
-            slidesToScroll: 2,
-            pauseOnHover: false,
-            autoplaySpeed: 6000,
-            cssEase: 'linear',
-            lazyLoad: 'progressive',
-            draggable: false
+        // JavaScript to be fired on the home page
+        $(window).on('load', function(){
+          var grid = $('.iso-grid').isotope({
+            itemSelector: '.iso-grid-item',
+            layoutMode: 'packery',
+            packery: {
+              gutter: 15
+            }
           });
-        } else {
-            $('.home-slider').slick({
-              dots: false,
-              arrows: false,
-              autoplay: true,
-              infinite: true,
-              slidesToShow: 1,
-              slidesToScroll: 1,
-              pauseOnHover: false,
-              autoplaySpeed: 6000,
-              cssEase: 'linear',
-              lazyLoad: 'progressive',
-              draggable: false
-            });
-        }
+          grid.on('arrangeComplete', function(event, filteredItems ){
+            console.log( 'Isotope arrange completed on ' + filteredItems.length + ' items' );
+          });
+        });
       },
       finalize: function() {
         // JavaScript to be fired on the home page, after the init JS
@@ -98,35 +49,6 @@
     'about_us': {
       init: function() {
         // JavaScript to be fired on the about us page
-      }
-    },
-    'page_template_photogrid': {
-      init: function() {
-        var baseString = ' col-xs-12 ';
-
-        $('.photo-wrapper:nth-child(7n + 1), .photo-wrapper:nth-child(7n + 3)').each(function(){
-          var currentClass = $(this).attr('class');
-          currentClass = currentClass + baseString + 'col-sm-3';
-          $(this).attr('class', currentClass);
-        });
-
-        $('.photo-wrapper:nth-child(7n + 2)').each(function(){
-          var currentClass = $(this).attr('class');
-          currentClass = currentClass + baseString + 'col-sm-6';
-          $(this).attr('class', currentClass);
-        });
-
-        $('.photo-wrapper:nth-child(7n + 4), .photo-wrapper:nth-child(7n + 6)').each(function(){
-          var currentClass = $(this).attr('class');
-          currentClass = currentClass + baseString + 'col-sm-4';
-          $(this).attr('class', currentClass);
-        });
-
-        $('.photo-wrapper:nth-child(7n + 5), .photo-wrapper:nth-child(7n + 7)').each(function(){
-          var currentClass = $(this).attr('class');
-          currentClass = currentClass + baseString + 'col-sm-2';
-          $(this).attr('class', currentClass);
-        });
       }
     }
   };
@@ -163,10 +85,5 @@
 
   // Load Events
   $(document).ready(UTIL.loadEvents);
-  $(window).load(function(){
-    $('.photo').each(function(){
-      $(this).addClass('loaded');
-    });
-  });
 
 })(jQuery); // Fully reference jQuery after this point.

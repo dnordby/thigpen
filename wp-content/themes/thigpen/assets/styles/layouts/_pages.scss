@@ -1,0 +1,16 @@
+.main {
+	width: 100%;
+}
+
+.iso-grid {
+	width: 100%;
+	.iso-grid-sizer {
+		width: 15px;
+	}
+	.iso-grid-item {
+		width: 20%;
+	}
+	.iso-grid-item-double {
+		width: calc(40% + 15px);
+	}
+}
