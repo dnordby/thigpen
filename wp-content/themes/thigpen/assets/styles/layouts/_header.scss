@@ -1,0 +1,19 @@
+.site-header {
+	height: 60px;
+	.brand-wrapper,
+	.nav-primary {
+		display: inline-block;
+    line-height: 60px;
+	}
+  .brand-wrapper {
+    text-transform: uppercase;
+  }
+  .nav-primary {
+    float: right;
+    ul {
+      li {
+        margin-left: 15px;
+      }
+    }
+  }
+}

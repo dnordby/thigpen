@@ -22,23 +22,20 @@
       },
       finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired
+        $(window).on('load', function(){
+          $('.loader-wrapper').addClass('hidden');
+        });
       }
     },
     // Home page
     'home': {
       init: function() {
         // JavaScript to be fired on the home page
-        $(window).on('load', function(){
-          var grid = $('.iso-grid').isotope({
-            itemSelector: '.iso-grid-item',
-            layoutMode: 'packery',
-            packery: {
-              gutter: 15
-            }
-          });
-          grid.on('arrangeComplete', function(event, filteredItems ){
-            console.log( 'Isotope arrange completed on ' + filteredItems.length + ' items' );
-          });
+        var homeSlider = new Swiper('#landing-slider', {
+          spaceBetween: 30,
+          freeMode: true,
+          slidesPerView: 'auto',
+          mousewheel: true
         });
       },
       finalize: function() {
@@ -49,6 +46,25 @@
     'about_us': {
       init: function() {
         // JavaScript to be fired on the about us page
+      }
+    },
+    'page_template_template_grid': {
+      init: function() {
+        $(window).on('load', function(){
+          var $grid = $('.grid').isotope({
+            layoutMode: 'packery',
+            packery: {
+              gutter: 15,
+              percentPosition: true
+            },
+            itemSelector: '.grid-item'
+          });
+
+          $('.filter-wrapper p').click(function(){
+            var class_filter = '.' + $(this).attr('class');
+            $grid.isotope({ filter: class_filter});
+          });
+        });
       }
     }
   };
